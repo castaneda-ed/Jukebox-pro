@@ -1,5 +1,5 @@
 const express = require("express");
-const router = express.Router;
+const router = express.Router();
 module.exports = router;
 
 const { authenticate } = require("./auth");
@@ -19,7 +19,7 @@ router.get("/", authenticate, async (req, res, next) => {
 router.post("/", authenticate, async (req, res, next) => {
   const { name, description, trackIds } = req.body;
   try {
-    const tracks = trackIds.Map((id) => ({ id }));
+    const tracks = trackIds.map((id) => ({ id }));
     const playlist = await prisma.playlist.create({
       data: {
         name,
